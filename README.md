@@ -4,4 +4,5 @@ A função começa selecionando a div "numbers-container" e todos os números de
 dela atraves do "querySelector" e "querySelectorAll".
 Em seguida, a função  usa o método "sort" -> (metodo que ordena os elementos do próprio array e retorna o array), para classificar o array de números em ordem crescente. 
 
+A função "DesordenarNumeros()" foi explicada detalhadamente no codigo, caso haja algum erro pode entrar em contato comigo e me corrigir, muito obrigada!
 

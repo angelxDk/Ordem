@@ -152,29 +152,33 @@
             const numbersContainer = document.querySelector(".numbers-container");
             const numbers = Array.from(numbersContainer.querySelectorAll(".number"));
             //basicamente seleciona os numeros do .numbers-container também.
-            shuffle(numbers);
+            shuffle(numbers); // Recebendo como parâmetro o array a ser embaralhado.
             numbers.forEach((number) => {
                 numbersContainer.appendChild(number);
             });
         }
 
         function shuffle(array) {
-            let currentIndex = array.length;
-            let temporaryValue;
-            let randomIndex;
+            let currentIndex = array.length; //índice atual do elemento que está sendo trocado
+            let temporaryValue; //valor temporário do elemento atual durante a troca
+            let randomIndex; //índice aleatório do elemento que será trocado com o atual
 
             // Enquanto houver elementos para embaralhar
             while (currentIndex !== 0) {
                 // Escolhe um elemento restante...
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
+                randomIndex = Math.floor(Math.random() * currentIndex); //escolhendo um índice aleatório e utilizando o método "Math.random" e a função "Math.floor".
+                currentIndex -= 1; // subtraindo 1 do índice atual.
 
-                // tracar pelo elemento atual.
                 temporaryValue = array[currentIndex];
                 array[currentIndex] = array[randomIndex];
                 array[randomIndex] = temporaryValue;
+                //   Trocando o elemento atual (representado pelo índice "currentIndex") 
+                //  pelo elemento selecionado aleatoriamente (representado pelo índice "randomIndex"),
+                //   utilizando a variável temporária "temporaryValue".
             }
-            return array;
+            // o processo continua repetindo até que todos os elementos tenham sido percorridos e trocados de posição.
+            
+            return array;// e por fim retorna o array embaralhado.
         }
 
     </script>
