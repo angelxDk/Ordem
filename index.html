@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ordenação de Números</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        img {
+            height: 20px !important;
+            width: 20px;
+        }
+
+        .container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #8c8195;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            margin: 2px;
+            padding: 8px;
+            background-color: #844caf;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .Titulo {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #f5e7f9;
+        }
+
+        button:hover {
+            background-color: #312d37;
+            color: #082799;
+        }
+
+        button:active {
+            background-color: #220648;
+            transform: scale(0.9);
+        }
+
+        .numbers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .number {
+            width: 50px;
+            height: 50px;
+            background-color: #302e3ca0;
+            color: #f5e7f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4f4a51;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button-start {
+            float: left;
+        }
+
+        .button-end {
+            float: right;
+        }
+
+        .containerBtn {
+            padding: 5px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="Titulo">Ordenação de números </h1>
+        <div class="containerBtn">
+            <button class="button button-start" title="misturar" onclick="DesordenarNumeros()"><img
+                    src="./assets/aleatoria.png" alt="shuffle"></button>
+            <button class="button button-end" title="Ordenar" onclick="OrdenarNumeros()"><img src="./assets/ordem.png"
+                    alt="shuffle"></button>
+        </div>
+        <div class="numbers-container">
+            <div class="number">3</div>
+            <div class="number">7</div>
+            <div class="number">1</div>
+            <div class="number">4</div>
+            <div class="number">9</div>
+            <div class="number">0</div>
+            <div class="number">5</div>
+            <div class="number">8</div>
+            <div class="number">2</div>
+            <div class="number">6</div>
+        </div>
+    </div>
+
+    <script>
+        function OrdenarNumeros() {
+            const numbersContainer = document.querySelector(".numbers-container");
+            //procurando o elemento através do seletor de classe ".numbers-container".
+            const numbers = Array.from(numbersContainer.querySelectorAll(".number"));
+            //selecionando os elementos que contem numeros dentro de numbersContainer
+
+            numbers.sort((a, b) => {
+                const numA = parseInt(a.textContent);
+                const numB = parseInt(b.textContent);
+                return numA - numB;
+            });
+            //é necessario o uso do método *sort* para ordenar os elementos e  comparando o valor  contido dentro de cada elemento. 
+            // ja o *parseInt* extrai o valor numérico de cada elemento, logo depois retorna a diferença entre eles.
+            //  atravez da diferença é determinado se um elemento vai ser posicionado antes ou depois do outro na ordem final.
+
+            numbers.forEach((number) => {
+                numbersContainer.appendChild(number);
+            });
+            // percorre a lista ordenada de elementos e adiciona de volta no container usando o método "appendChild".
+        }
+        function DesordenarNumeros() {
+            const numbersContainer = document.querySelector(".numbers-container");
+            const numbers = Array.from(numbersContainer.querySelectorAll(".number"));
+            //basicamente seleciona os numeros do .numbers-container também.
+            shuffle(numbers);
+            numbers.forEach((number) => {
+                numbersContainer.appendChild(number);
+            });
+        }
+
+        function shuffle(array) {
+            let currentIndex = array.length;
+            let temporaryValue;
+            let randomIndex;
+
+            // Enquanto houver elementos para embaralhar
+            while (currentIndex !== 0) {
+                // Escolhe um elemento restante...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // tracar pelo elemento atual.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        }
+
+    </script>
